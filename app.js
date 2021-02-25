@@ -14,7 +14,7 @@ input.addEventListener("keydown", (e) => {
       deleteIcon.src = "img/deleteIcon.png";
 
       listItem.innerHTML = "<div>" + val + " </div> <img>";
-      ul.append(listItem, deleteIcon);
+      ul.append(listItem);
     } else {
       alert("Поле пусто");
     }
