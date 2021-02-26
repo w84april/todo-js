@@ -27,12 +27,6 @@ body {
   color: 000000;
 }
 
-img {
-  width: 25px;
-  background-image: url("img/deleteIcon.png");
-  background-repeat: no-repeat;
-}
-
 ul {
   width: 100%;
   margin-right: 38px;
@@ -64,8 +58,8 @@ section {
   display: flex;
   height: 50px;
   color: #5f5d5d;
-
   border: none;
+  margin-bottom: 5px;
 }
 
 .list_wrapper {
@@ -77,4 +71,28 @@ section {
 
 .delete_icon {
   width: 25px;
+  background-repeat: no-repeat;
+}
+.delete_icon:hover {
+  background-color: whitesmoke;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.buttons {
+  display: flex;
+}
+
+.button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.todos_left {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }
