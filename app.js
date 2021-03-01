@@ -3,9 +3,11 @@ let countLeft = 0;
 const input = document.querySelector(".input");
 const filterOptions = document.querySelector(".buttons");
 const todoList = document.querySelector(".todo_list");
-const todosLeft = document.querySelector(".todos_left");
+const checkBox = document.querySelector(".checkbox");
+const clearDone = document.querySelector(".todos_clear");
 
 filterOptions.addEventListener("click", filterTodos);
+clearDone.addEventListener("click", handleClearDone);
 
 input.addEventListener("keydown", (e) => {
   let val = e.target.value;
@@ -31,20 +33,35 @@ input.addEventListener("keydown", (e) => {
       deleteIcon.addEventListener("click", (event) => {
         let elem = event.target.closest(".listitem");
         elem.remove();
+        countTodosLeft();
       });
 
       checkBox.addEventListener("click", (event) => {
         let elem = event.target.closest(".listitem");
         elem.classList.toggle("completed");
+        countTodosLeft();
       });
 
-      todosLeft.innerHTML = "Tasks left: " + todos.length;
+      todoList.addEventListener("dblclick", (event) => {
+        console.log(event.target);
+        let inputEdit = document.createElement("input");
+        inputEdit.className = "input_edit";
+        event.target.closest("li").replaceChild(inputEdit, message);
+
+        inputEdit.addEventListener("keydown", (event) => {
+          if (event.key == "Enter") {
+            message.innerText = event.target.value;
+            event.target.closest("li").replaceChild(message, inputEdit);
+          }
+        });
+      });
 
       listItem.appendChild(checkBox);
       listItem.appendChild(message);
       listItem.appendChild(deleteIcon);
 
       ul.append(listItem);
+      countTodosLeft();
     } else {
       alert("Поле пусто");
     }
@@ -81,12 +98,25 @@ function filterTodos(event) {
   });
 }
 
-function countTodosLeft(todos) {
+function countTodosLeft() {
+  const todosLeft = document.querySelector(".todos_left");
+  const todos = todoList.querySelectorAll("li");
   let count = 0;
-  todos.forEach((todo) => {
-    if (todo.classList.contains("completed")) {
-      count++;
+  for (let i of todos) {
+    if (i.style.opacity != 0.5) count++;
+    console.log(count);
+  }
+  todosLeft.innerHTML = `${count} todos left`;
+}
+
+function handleClearDone() {
+  todos = todoList.querySelectorAll("li");
+
+  for (let i of todos) {
+    if (i.classList.contains("completed")) {
+      i.remove();
+      console.log("hi");
     }
-  });
-  return count;
+  }
+  countTodosLeft();
 }

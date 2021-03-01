@@ -82,10 +82,6 @@ section {
   opacity: 0.5;
 }
 
-.buttons {
-  display: flex;
-}
-
 .button {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -94,5 +90,22 @@ section {
 .todos_left {
   display: flex;
   justify-content: flex-start;
+}
+
+.bottom_line {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
+}
+
+.todos_clear {
+  color: #5f5d5d;
+}
+.todos_clear:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.input_edit {
+  max-width: 100px;
 }
