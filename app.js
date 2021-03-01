@@ -1,4 +1,5 @@
 let todos = [];
+let countLeft;
 const input = document.querySelector(".input");
 const filterOptions = document.querySelector(".buttons");
 const todoList = document.querySelector(".todo_list");
@@ -71,9 +72,9 @@ input.addEventListener("keydown", (e) => {
 
 // с помощью toggle работало криво, так норм
 function filterTodos(event) {
-  todos = todoList.querySelectorAll("li");
+  list = todoList.querySelectorAll("li");
   console.log(todos);
-  todos.forEach((todo) => {
+  list.forEach((todo) => {
     console.log(todo.classList);
     switch (event.target.innerText) {
       case "All":
@@ -101,19 +102,20 @@ function filterTodos(event) {
 
 function countTodosLeft() {
   const todosLeft = document.querySelector(".todos_left");
-  const todos = todoList.querySelectorAll("li");
+  const list = todoList.querySelectorAll("li");
   let count = 0;
-  for (let i of todos) {
-    if (i.style.opacity != 0.5) count++;
+  for (let i of list) {
+    if (!i.classList.contains("completed")) count++;
     console.log(count);
   }
   todosLeft.innerHTML = `${count} todos left`;
+  countLeft = count;
 }
 
 function handleClearDone() {
-  todos = todoList.querySelectorAll("li");
+  list = todoList.querySelectorAll("li");
 
-  for (let i of todos) {
+  for (let i of list) {
     if (i.classList.contains("completed")) {
       i.remove();
       console.log("hi");
@@ -123,9 +125,20 @@ function handleClearDone() {
 }
 
 function handleGlobalCheckBox() {
-  todos = todoList.querySelectorAll("li");
-
-  for (let i of todos) {
-    i.classList.toggle("completed");
+  list = todoList.querySelectorAll("li");
+  if (countLeft !== 0)
+    for (let i of list) {
+      if (!i.classList.contains("completed")) {
+        i.classList.toggle("completed");
+        i.firstChild.checked = true;
+        countTodosLeft();
+      }
+    }
+  else {
+    for (let i of list) {
+      i.classList.remove("completed");
+      i.firstChild.checked = false;
+      countTodosLeft();
+    }
   }
 }
