@@ -83,9 +83,19 @@ section {
   opacity: 0.5;
 }
 
+.buttons {
+  display: flex;
+}
 .button {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+.button_active {
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: #2c98f0;
+  color: white;
+  width: 100%;
 }
 
 .todos_left {

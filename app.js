@@ -1,5 +1,6 @@
 let todos = [];
 let countLeft;
+let filterState = "All";
 const input = document.querySelector(".input");
 const filterOptions = document.querySelector(".buttons");
 const todoList = document.querySelector(".todo_list");
@@ -7,7 +8,7 @@ const checkBox = document.querySelector(".checkbox");
 const clearDone = document.querySelector(".todos_clear");
 const globalCheckBox = document.querySelector(".arrow_down");
 
-filterOptions.addEventListener("click", filterTodos);
+filterOptions.addEventListener("click", changeFilter, filterTodos);
 clearDone.addEventListener("click", handleClearDone);
 globalCheckBox.addEventListener("click", handleGlobalCheckBox);
 
@@ -41,6 +42,8 @@ input.addEventListener("keydown", (e) => {
       checkBox.addEventListener("click", (event) => {
         let elem = event.target.closest(".listitem");
         elem.classList.toggle("completed");
+        filterTodos(filterState);
+        console.log(filterState);
         countTodosLeft();
       });
 
@@ -70,13 +73,20 @@ input.addEventListener("keydown", (e) => {
   }
 });
 
+function changeFilter(event) {
+  let buttons = document.querySelectorAll(".button");
+  buttons.forEach((item) => item.classList.remove("button_active"));
+  event.target.classList.add("button_active");
+
+  filterState = event.target.innerText;
+  filterTodos(filterState);
+}
+
 // с помощью toggle работало криво, так норм
-function filterTodos(event) {
+function filterTodos(filter) {
   list = todoList.querySelectorAll("li");
-  console.log(todos);
   list.forEach((todo) => {
-    console.log(todo.classList);
-    switch (event.target.innerText) {
+    switch (filter) {
       case "All":
         todo.style.display = "flex";
         break;
@@ -86,14 +96,17 @@ function filterTodos(event) {
           break;
         } else {
           todo.style.display = "flex";
+
           break;
         }
       case "Done":
         if (todo.classList.contains("completed")) {
           todo.style.display = "flex";
+
           break;
         } else {
           todo.style.display = "none";
+
           break;
         }
     }
