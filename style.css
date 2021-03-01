@@ -44,14 +44,15 @@ li {
 
 section {
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 100px;
 }
 
 .wrapper__input {
@@ -108,4 +109,12 @@ section {
 
 .input_edit {
   max-width: 100px;
+}
+
+.arrow_down {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+  margin-top: 85px;
+  margin-right: 10px;
 }

@@ -1,13 +1,14 @@
 let todos = [];
-let countLeft = 0;
 const input = document.querySelector(".input");
 const filterOptions = document.querySelector(".buttons");
 const todoList = document.querySelector(".todo_list");
 const checkBox = document.querySelector(".checkbox");
 const clearDone = document.querySelector(".todos_clear");
+const globalCheckBox = document.querySelector(".arrow_down");
 
 filterOptions.addEventListener("click", filterTodos);
 clearDone.addEventListener("click", handleClearDone);
+globalCheckBox.addEventListener("click", handleGlobalCheckBox);
 
 input.addEventListener("keydown", (e) => {
   let val = e.target.value;
@@ -119,4 +120,12 @@ function handleClearDone() {
     }
   }
   countTodosLeft();
+}
+
+function handleGlobalCheckBox() {
+  todos = todoList.querySelectorAll("li");
+
+  for (let i of todos) {
+    i.classList.toggle("completed");
+  }
 }
