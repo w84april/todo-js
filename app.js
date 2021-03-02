@@ -75,9 +75,12 @@ input.addEventListener("keydown", (e) => {
 
 function changeFilter(event) {
   let buttons = document.querySelectorAll(".button");
-  buttons.forEach((item) => item.classList.remove("button_active"));
-  event.target.classList.add("button_active");
+  if (event.target.tagName != "UL") {
+    buttons.forEach((item) => item.classList.remove("button_active"));
+    event.target.classList.add("button_active");
+  }
 
+  //tagname
   filterState = event.target.innerText;
   filterTodos(filterState);
 }
