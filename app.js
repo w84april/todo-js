@@ -147,6 +147,7 @@ function handleGlobalCheckBox() {
       if (!i.classList.contains("completed")) {
         i.classList.toggle("completed");
         i.firstChild.checked = true;
+        filterTodos(filterState);
         countTodosLeft();
       }
     }
@@ -154,6 +155,7 @@ function handleGlobalCheckBox() {
     for (let i of list) {
       i.classList.remove("completed");
       i.firstChild.checked = false;
+      filterTodos(filterState);
       countTodosLeft();
     }
   }
