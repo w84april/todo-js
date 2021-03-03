@@ -23,8 +23,12 @@ input.addEventListener("keydown", (e) => {
       let listItem = document.createElement("li");
       listItem.className = "listitem";
 
+      let listStart = document.createElement("div");
+      listStart.className = "liststart";
+
       let message = document.createElement("div");
       message.innerText = val;
+      message.className = "message";
 
       let deleteIcon = document.createElement("img");
       deleteIcon.src = "img/deleteIcon.png";
@@ -61,11 +65,14 @@ input.addEventListener("keydown", (e) => {
         });
       });
 
-      listItem.appendChild(checkBox);
-      listItem.appendChild(message);
+      listStart.appendChild(checkBox);
+      listStart.appendChild(message);
+
+      listItem.appendChild(listStart);
       listItem.appendChild(deleteIcon);
 
       ul.append(listItem);
+      filterTodos(filterState);
       countTodosLeft();
     } else {
       alert("Поле пусто");

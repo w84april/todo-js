@@ -34,6 +34,7 @@ body {
 
 .listitem {
   display: flex;
+  text-align: flex-start;
   justify-content: space-between;
   background-color: white;
   padding: 20px;
@@ -42,10 +43,22 @@ body {
   margin-bottom: 5px;
 }
 
+.liststart {
+  display: flex;
+  align-items: center;
+  overflow: auto;
+}
+
 section {
   display: flex;
   justify-content: center;
   flex-direction: row;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .wrapper {
@@ -65,7 +78,9 @@ section {
   width: 100%;
 }
 .input {
+  padding-left: 50px;
   width: 100%;
+  height: 100%;
 }
 .list_wrapper {
   display: flex;
@@ -134,9 +149,14 @@ section {
 }
 
 .arrow_down {
+  position: absolute;
   width: 20px;
   height: 20px;
   opacity: 0.5;
-  margin-top: 85px;
   margin-right: 10px;
+  margin-left: 22px;
+}
+
+.message {
+  margin-left: 18px;
 }
