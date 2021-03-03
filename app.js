@@ -52,20 +52,22 @@ input.addEventListener("keydown", (e) => {
       });
 
       todoList.addEventListener("dblclick", (event) => {
-        console.log(event.target);
-        let inputEdit = document.createElement("input");
-        inputEdit.className = "input_edit";
+        if (event.target.tagName != "INPUT") {
+          console.log(event.target);
+          let inputEdit = document.createElement("input");
+          inputEdit.className = "input_edit";
 
-        event.target.closest(".listitem").replaceChild(inputEdit, listStart);
+          event.target.closest(".listitem").replaceChild(inputEdit, listStart);
 
-        inputEdit.addEventListener("keydown", (event) => {
-          if (event.key == "Enter") {
-            message.innerText = event.target.value;
-            event.target
-              .closest(".listitem")
-              .replaceChild(listStart, inputEdit);
-          }
-        });
+          inputEdit.addEventListener("keydown", (event) => {
+            if (event.key == "Enter") {
+              message.innerText = event.target.value;
+              event.target
+                .closest(".listitem")
+                .replaceChild(listStart, inputEdit);
+            }
+          });
+        }
       });
 
       listStart.appendChild(checkBox);
@@ -156,7 +158,7 @@ function handleGlobalCheckBox() {
     for (let i of list) {
       if (!i.classList.contains("completed")) {
         i.classList.toggle("completed");
-        i.firstChild.checked = true;
+        i.firstChild.firstChild.checked = true;
         filterTodos(filterState);
         countTodosLeft();
       }
@@ -164,7 +166,7 @@ function handleGlobalCheckBox() {
   else {
     for (let i of list) {
       i.classList.remove("completed");
-      i.firstChild.checked = false;
+      i.firstChild.firstChild.checked = false;
       filterTodos(filterState);
       countTodosLeft();
     }
