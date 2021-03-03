@@ -130,7 +130,7 @@ section {
 }
 
 .bottom_line {
-  display: flex;
+  display: none;
   justify-content: space-between;
   width: 100%;
   align-items: center;

@@ -7,11 +7,11 @@ const todoList = document.querySelector(".todo_list");
 const checkBox = document.querySelector(".checkbox");
 const clearDone = document.querySelector(".todos_clear");
 const globalCheckBox = document.querySelector(".arrow_down");
+const bottomLine = document.querySelector(".bottom_line");
 
 filterOptions.addEventListener("click", changeFilter, filterTodos);
 clearDone.addEventListener("click", handleClearDone);
 globalCheckBox.addEventListener("click", handleGlobalCheckBox);
-
 input.addEventListener("keydown", (e) => {
   let val = e.target.value;
   if (e.key == "Enter") {
@@ -19,6 +19,8 @@ input.addEventListener("keydown", (e) => {
       todos.push(val.trim());
       console.log(todos);
       e.target.value = "";
+
+      setTimeout(ifEmty, 0);
 
       let listItem = document.createElement("li");
       listItem.className = "listitem";
@@ -40,6 +42,8 @@ input.addEventListener("keydown", (e) => {
       deleteIcon.addEventListener("click", (event) => {
         let elem = event.target.closest(".listitem");
         elem.remove();
+        console.log(!todoList.firstChild);
+
         countTodosLeft();
       });
 
@@ -48,6 +52,7 @@ input.addEventListener("keydown", (e) => {
         elem.classList.toggle("completed");
         filterTodos(filterState);
         console.log(filterState);
+
         countTodosLeft();
       });
 
@@ -84,6 +89,14 @@ input.addEventListener("keydown", (e) => {
     }
   }
 });
+
+function ifEmty() {
+  if (document.querySelector(".listitem")) {
+    bottomLine.style.display = "flex";
+  } else {
+    bottomLine.style.display = "none";
+  }
+}
 
 function changeFilter(event) {
   let buttons = document.querySelectorAll(".button");
@@ -149,6 +162,7 @@ function handleClearDone() {
       console.log("hi");
     }
   }
+
   countTodosLeft();
 }
 
