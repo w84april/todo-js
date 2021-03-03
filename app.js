@@ -55,12 +55,15 @@ input.addEventListener("keydown", (e) => {
         console.log(event.target);
         let inputEdit = document.createElement("input");
         inputEdit.className = "input_edit";
-        event.target.closest("li").replaceChild(inputEdit, message);
+
+        event.target.closest(".listitem").replaceChild(inputEdit, listStart);
 
         inputEdit.addEventListener("keydown", (event) => {
           if (event.key == "Enter") {
             message.innerText = event.target.value;
-            event.target.closest("li").replaceChild(message, inputEdit);
+            event.target
+              .closest(".listitem")
+              .replaceChild(listStart, inputEdit);
           }
         });
       });
